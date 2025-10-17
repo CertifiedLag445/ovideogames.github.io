@@ -1,0 +1,193 @@
+:root{
+  --bg: #090b10;
+  --bg-2:#0e1220;
+  --panel:#121623;
+  --muted:#9aa4bf;
+  --accent:#00e0ff;       /* neon cyan */
+  --accent2:#ff4d9d;      /* neon pink */
+  --accent3:#6cff7e;      /* neon green */
+  --danger:#ff5c7a;
+  --warn:#ffd166;
+  --good:#7cf7a0;
+  --surface:#0b0f18;
+  --card:#131a2b;
+  --border:#1e2740;
+  --glow: 0 10px 30px #00e0ff1f, 0 0 0 1px #1e2740 inset;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  color:#eaf2ff;
+  background:
+    radial-gradient(1200px 600px at 80% -20%, #1a1d31 0%, transparent 60%),
+    radial-gradient(800px 500px at -10% 110%, #151a2b 0%, transparent 60%),
+    linear-gradient(180deg, #0a0d14, #0c1220 60%, #0a0d14);
+}
+
+/* --- Header --- */
+.site-header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(9,12,20,.85);
+  backdrop-filter: blur(8px);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{
+  max-width:1200px; margin:0 auto;
+  padding:14px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:32px; height:32px; border-radius:8px;
+  background: conic-gradient(from 180deg, var(--accent), var(--accent2), var(--accent3), var(--accent));
+  box-shadow:0 0 20px #00e0ff55;
+}
+.brand-text h1{font-size:1.3rem; margin:0}
+.brand-text .tagline{margin:0; color:var(--muted); font-size:.9rem}
+.header-actions .ghost{padding:.45rem .7rem}
+
+/* --- Layout --- */
+.container{
+  max-width:1200px; margin:0 auto;
+  display:grid; grid-template-columns:260px 1fr; gap:18px;
+  padding:18px 20px 24px;
+  min-height:calc(100% - 68px);
+}
+nav{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px;
+  box-shadow:var(--glow);
+  height: fit-content;
+  position: sticky;
+  top: 84px;
+}
+.menu{display:grid;gap:.5rem}
+.menu .tab{
+  appearance:none;
+  border:1px solid var(--border);
+  background:linear-gradient(180deg,#12182a,#0e1322);
+  color:#eaf2ff;
+  padding:.6rem .75rem;
+  border-radius:10px;
+  text-align:left;
+  cursor:pointer;
+  transition:.18s;
+}
+.menu .tab:hover{border-color:#2b385d; filter:brightness(1.07)}
+.menu .tab.active{border-color:var(--accent); box-shadow:0 0 0 1px #00e0ff55 inset; background:#0e172a}
+
+.panel{padding:0;}
+.game-wrap{
+  display:none;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:16px;
+  box-shadow:var(--glow);
+}
+.game-wrap.active{display:block}
+
+.game-header{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  border-bottom:1px solid var(--border); padding-bottom:10px; margin-bottom:14px;
+}
+h2{margin:.2rem 0}
+
+.controls{display:flex;flex-wrap:wrap;gap:.6rem}
+.controls select,.controls button{
+  background:#0f1627;
+  border:1px solid var(--border);
+  color:#eaf2ff;
+  padding:.5rem .7rem;
+  border-radius:10px;
+}
+.controls .cta{
+  background:linear-gradient(180deg, #0a2430,#081a24);
+  border-color:#0f3a46;
+  box-shadow: 0 0 0 1px #0f3a46 inset, 0 6px 18px #00e0ff26;
+  color:#bff5ff;
+}
+.controls .ghost{
+  background:#0c1220;
+  color:#c5d7ff;
+}
+
+.canvas-wrap{ position:relative; display:flex; justify-content:center; }
+.canvas-wrap.tall{align-items:center}
+canvas{
+  background: radial-gradient(200% 140% at 50% 20%, #0b1220 0%, #0a0f18 55%, #080a10 100%);
+  border:1px solid var(--border);
+  border-radius:12px;
+  box-shadow:var(--glow);
+  width:100%;
+  height:auto;
+  max-width:100%;
+}
+
+.overlay{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-size:64px; font-weight:800; color:#eaf2ff;
+  text-shadow: 0 2px 0 #000, 0 0 30px #00e0ff66;
+  background:rgba(7,10,16,.2);
+}
+.overlay.hidden{display:none}
+
+.meta{font-size:.9rem;color:var(--muted); margin:.6rem 0 0}
+.kbd{border:1px solid var(--border);border-bottom-width:3px;padding:.08rem .32rem;border-radius:6px;background:#0f1627;color:#cad3e6;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* ------ TicTacToe ------ */
+.ttt-grid{display:grid;grid-template-columns:repeat(3,110px);grid-template-rows:repeat(3,110px);gap:10px; width:max-content; margin:12px auto}
+.cell{
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.6rem;font-weight:800;cursor:pointer;
+  background:#0f1424;border:1px solid var(--border);border-radius:12px;transition:.12s;
+  box-shadow:0 10px 30px #00000033 inset;
+}
+.cell:hover{filter:brightness(1.08)}
+
+/* ------ Memory ------ */
+.memory-grid{display:grid;gap:12px; justify-content:center}
+.card{
+  width:86px;height:110px;background:#10172a;border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.8rem;cursor:pointer;user-select:none;position:relative;perspective:600px;
+  box-shadow: var(--glow);
+}
+.card-inner{position:absolute;inset:0;transition:transform .45s;transform-style:preserve-3d}
+.card.flipped .card-inner{transform:rotateY(180deg)}
+.card-face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:10px;backface-visibility:hidden}
+.card-front{background:#0b1220;color:#7e8aa7;border:1px dashed #2b3550}
+.card-back{background:linear-gradient(135deg,#10182c,#0d1422);border:1px solid #2b3550;transform:rotateY(180deg)}
+.card-back .emoji{font-size:2rem; filter: drop-shadow(0 2px 4px #00000088);}
+
+.hud{display:flex;gap:1rem;margin:.6rem 0;color:#aab4c7; justify-content:center}
+
+/* --- Footer --- */
+footer{padding:18px;color:#8ea0c6;text-align:center;border-top:1px solid var(--border)}
+
+/* --- Utility buttons --- */
+button{cursor:pointer}
+button:focus{outline:2px solid #00e0ff66; outline-offset:2px}
+
+
+/* Keep Flappy strictly portrait and centered */
+#flappy .canvas-wrap { justify-content: center; }
+
+#flappy canvas#flappyCanvas {
+  aspect-ratio: 288 / 512;     /* lock portrait ratio */
+  height: min(520px, 80vh);    /* size by height */
+  width: auto;                  /* width follows height to preserve ratio */
+  max-width: 100%;              /* don’t overflow on tiny screens */
+  image-rendering: pixelated;
+}
+
+
+/* On shorter viewports, clamp further */
+@media (max-height: 800px) {
+  #flappy canvas#flappyCanvas { max-height: 460px; }
+}
+@media (max-height: 700px) {
+  #flappy canvas#flappyCanvas { max-height: 420px; }
+}

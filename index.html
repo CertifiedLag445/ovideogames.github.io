@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcade Hub — Tic Tac Toe, Pong, Flappy, Asteroids, Memory</title>
+  <link rel="stylesheet" href="UVideoGame.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="logo"></div>
+        <div class="brand-text">
+          <h1>Game Hub</h1>
+          <p class="tagline">Five classics. One page.</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="themeToggle" class="ghost">Toggle Theme</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav aria-label="Game list">
+      <div class="menu">
+        <button class="tab active" data-target="ttt" aria-controls="ttt" aria-selected="true">Tic Tac Toe</button>
+        <button class="tab" data-target="pong" aria-controls="pong">Pong</button>
+        <button class="tab" data-target="flappy" aria-controls="flappy">Flappy Bird</button>
+        <button class="tab" data-target="asteroids" aria-controls="asteroids">Asteroid Shooter</button>
+        <button class="tab" data-target="memory" aria-controls="memory">Memory Match</button>
+      </div>
+    </nav>
+
+    <main class="panel">
+      <!-- Tic Tac Toe -->
+      <section id="ttt" class="game-wrap active" aria-label="Tic Tac Toe game">
+        <div class="game-header">
+          <h2>Tic Tac Toe</h2>
+          <div class="controls">
+            <label for="tttDiff">Difficulty</label>
+            <select id="tttDiff" aria-label="Tic Tac Toe Difficulty">
+              <option value="trash">Trash</option>
+              <option value="regular">Regular</option>
+              <option value="expert">Expert</option>
+            </select>
+            <button class="cta" id="tttStart">Start</button>
+            <button class="ghost" id="tttReset">Reset</button>
+          </div>
+        </div>
+        <div class="status" id="tttStatus" aria-live="polite">Select difficulty, then Start.</div>
+        <div class="ttt-grid" id="tttGrid" role="grid" aria-label="Tic Tac Toe board"></div>
+      </section>
+
+      <!-- Pong -->
+      <section id="pong" class="game-wrap" aria-label="Pong game">
+        <div class="game-header">
+          <h2>Pong</h2>
+          <div class="controls">
+            <label for="pongDiff">AI Difficulty</label>
+            <select id="pongDiff">
+              <option value="trash">Trash</option>
+              <option value="regular" selected>Regular</option>
+              <option value="expert">Expert</option>
+            </select>
+            <button id="pongStart" class="cta">Start</button>
+            <button id="pongReset" class="ghost">Reset</button>
+          </div>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="pongCanvas" width="720" height="420" aria-label="Pong canvas"></canvas>
+          <div id="pongOverlay" class="overlay hidden"></div>
+        </div>
+        <p class="meta">Controls: <span class="kbd">W</span>/<span class="kbd">S</span> or <span class="kbd">↑</span>/<span class="kbd">↓</span></p>
+      </section>
+
+      <!-- Flappy -->
+      <section id="flappy" class="game-wrap" aria-label="Flappy Bird game">
+        <div class="game-header">
+          <h2>Flappy Bird</h2>
+          <div class="controls">
+            <button id="flappyStart" class="cta">Start</button>
+            <button id="flappyReset" class="ghost">Reset</button>
+          </div>
+        </div>
+        <div class="canvas-wrap tall">
+          <canvas id="flappyCanvas" aria-label="Flappy Bird canvas"></canvas>
+          <div id="flappyOverlay" class="overlay hidden"></div>
+        </div>
+        <p class="meta">Controls: Press <span class="kbd">Space</span> or <span class="kbd">W</span> or click to flap.</p>
+      </section>
+
+      <!-- Asteroids -->
+      <section id="asteroids" class="game-wrap" aria-label="Asteroid Shooter game">
+        <div class="game-header">
+          <h2>Asteroid Shooter</h2>
+          <div class="controls">
+            <label for="astDiff">Difficulty</label>
+            <select id="astDiff">
+              <option value="easy">Easy</option>
+              <option value="normal" selected>Normal</option>
+              <option value="hard">Hard</option>
+            </select>
+            <button id="astStart" class="cta">Start</button>
+            <button id="astReset" class="ghost">Reset</button>
+          </div>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="astCanvas" width="840" height="520" aria-label="Asteroids canvas"></canvas>
+          <div id="astOverlay" class="overlay hidden"></div>
+        </div>
+        <p class="meta">Controls: <span class="kbd">A</span>/<span class="kbd">D</span> or <span class="kbd">←</span>/<span class="kbd">→</span> rotate, <span class="kbd">W</span> or <span class="kbd">↑</span> thrust, <span class="kbd">Space</span> fire.</p>
+      </section>
+
+      <!-- Memory -->
+      <section id="memory" class="game-wrap" aria-label="Memory Match game">
+        <div class="game-header">
+          <h2>Memory Match</h2>
+          <div class="controls">
+            <label for="memDiff">Difficulty</label>
+            <select id="memDiff">
+              <option value="normal" selected>Normal (4×4)</option>
+              <option value="hard">Hard (4×6)</option>
+              <option value="impossible">Impossible (6×6)</option>
+            </select>
+            <button id="memStart" class="cta">Start</button>
+            <button id="memReset" class="ghost">Reset</button>
+          </div>
+        </div>
+        <div class="hud">
+          <span id="memMoves">Moves: 0</span> • <span id="memTime">Time: 0.0s</span>
+        </div>
+        <div id="memoryGrid" class="memory-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <footer>© Arcade Hub — vanilla HTML/CSS/JS</footer>
+
+  <script src="UVideoGame.js"></script>
+</body>
+</html>
